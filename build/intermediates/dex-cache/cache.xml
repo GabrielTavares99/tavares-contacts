@@ -3,6 +3,24 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\gabri\OneDrive\Documentos\WorkSpaces\GitHub\Android\Agenda_De_Contatos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\gabri\OneDrive\Documentos\WorkSpaces\GitHub\Android\Agenda_De_Contatos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b5f7bf70a9d60a448e57e24f94dd22642fc8b02a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\gabri\OneDrive\Documentos\WorkSpaces\GitHub\Android\Agenda_De_Contatos\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2eda170d4528ce21e8367ef70d3c444d53f3c72d">
+        <dex dex="C:\Users\gabri\OneDrive\Documentos\WorkSpaces\GitHub\Android\Agenda_De_Contatos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_86f376cef72d52af93a1b4aa1f2f2a6213ee8a4c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\gabri\OneDrive\Documentos\WorkSpaces\GitHub\Android\AgendadeContatos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"

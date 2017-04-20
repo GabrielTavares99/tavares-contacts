@@ -1,18 +1,17 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Intent;
-import android.icu.util.ULocale;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.Switch;
 import android.database.sqlite.*;
-import android.database.*;
+import android.widget.ListView;
 
-import java.sql.SQLData;
+import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
+import com.ueuo.gabrieltavares.agendadecontatos.dominio.RepositorioContato;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener{
 
@@ -20,6 +19,11 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
     private DataBase dataBase;
     private SQLiteDatabase conexao;
+
+    private ListView listaContatos;
+
+    private ArrayAdapter<String> adpContatos;
+    private RepositorioContato repositorioContato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +38,19 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         try {
             dataBase = new DataBase(this);
-            conexao = dataBase.getReadableDatabase();
+            conexao = dataBase.getWritableDatabase();
             dlg.setMessage("Banco criado com sucesso");
+
+            repositorioContato = new RepositorioContato(conexao);
+
+            repositorioContato.inserirContatos();
+
+            adpContatos = repositorioContato.buscaContatos(this);
+
+            listaContatos = (ListView) findViewById(R.id.list_contatos);
+
+            listaContatos.setAdapter(adpContatos);
+
         } catch (Exception e){
             dlg.setMessage("Erro ao criar banco!"+e.getMessage());
         }
