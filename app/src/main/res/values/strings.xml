@@ -14,5 +14,7 @@
     <string name="lbl_Editar">Editar</string>
     <string name="lbl_Excluir">Excluir</string>
 
+    <string name="lbl_OK">OK!</string>
+
 
 </resources>
