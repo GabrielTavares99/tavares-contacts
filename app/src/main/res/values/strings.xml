@@ -6,9 +6,8 @@
     <string name="lbl_Email">Email</string>
     <string name="lbl_Endereco">Endereco</string>
     <string name="lbl_dataEspecial">Datas Especiais</string>
-    <string name="lbl_grupo">Grupos</string>
+    <string name="lbl_grupo">Grupo</string>
     <string name="lbl_Nome">Nome</string>
-
 
     <string name="lbl_Salvar">Salvar</string>
     <string name="lbl_Editar">Editar</string>
@@ -16,5 +15,34 @@
 
     <string name="lbl_OK">OK!</string>
 
+    <string name="lbl_tipo_telefone_residencial">Residencial</string>
+    <string name="lbl_tipo_telefone_comercial">Comercial</string>
+
+    <string name="lbl_tipo_email_pessoal">Pessoal</string>
+    <string name="lbl_tipo_email_comercial">Comercial</string>
+
+    <string name="lbl_tipo_endereco_pessoal">Residencial</string>
+    <string name="lbl_tipo_endereco_comercial">Comercial</string>
+
+    <string name="lbl_tipo_data_especial_aniversario">Aniversário</string>
+    <string name="lbl_tipo_data_especial_evento">Evento</string>
+
+    //STRINGS ERROS
+    <string name="lbl_titulo_erro">Erro!</string>
+    <string name="lbl_erro_preencher_dados">Erro ao preencher os campos com os dados do contato recebido!</string>
+
+    <string name="lbl_tituto_erro_conexao">Erro de conexão!</string>
+    <string name="lbl_erro_conexao">Erro na conexão com o banco de dados.</string>
+
+    <string name="lbl_erro_adicionar_contato">Erro ao cadastrar o contato.</string>
+    <string name="lbl_erro_editar_contato">Erro ao editar contato.</string>
+    <string name="lbl_erro_excluir_contato">Erro ao excluir contato</string>
+
+    //STRINGS SUCESSO
+    <string name="lbl_titulo_sucesso">Sucesso!</string>
+    <string name="lbl_contato_adicionado_sucesso">Contato adicionado com sucesso.</string>
+
+    <string name="lbl_contato_editado_sucesso">Contato Editado com sucesso.</string>
+    <string name="lbl_contato_excluido_sucesso">Contato excluido com sucesso.</string>
 
 </resources>

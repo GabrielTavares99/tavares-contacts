@@ -12,7 +12,15 @@
         android:id="@+id/lbl_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_tituloCadastroContatos" />
+        android:text="@string/lbl_tituloCadastroContatos"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/lbl_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_Nome"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:id="@+id/layout_nome"
@@ -26,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="@string/lbl_Nome"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -34,7 +41,8 @@
         android:id="@+id/lbl_telefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_Telefone" />
+        android:text="@string/lbl_Telefone"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:id="@+id/layout_telefone"
@@ -46,13 +54,18 @@
             android:id="@+id/txt_numeroTelefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
             android:ems="10"
-            android:inputType="phone" />
+            android:gravity="fill_horizontal"
+            android:inputType="phone"
+            android:textColorLink="@color/azul" />
 
         <Spinner
             android:id="@+id/spin_tipoTelefone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|fill_vertical|fill_horizontal"
+            android:gravity="right" />
 
     </LinearLayout>
 
@@ -61,7 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.00"
-        android:text="@string/lbl_email" />
+        android:text="@string/lbl_email"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:id="@+id/layout_email"
@@ -88,7 +102,8 @@
         android:id="@+id/lbl_endereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_Endereco" />
+        android:text="@string/lbl_Endereco"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:id="@+id/layout_endereco"
@@ -116,7 +131,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.00"
-        android:text="@string/lbl_dataEspecial" />
+        android:text="@string/lbl_dataEspecial"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:id="@+id/layout_dataEspecial"
@@ -134,6 +150,7 @@
 
         <Spinner
             android:id="@+id/spin_tipoDataEspecial"
+            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -143,7 +160,8 @@
         android:id="@+id/lbl_Grupo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_grupo" />
+        android:text="@string/lbl_grupo"
+        android:textSize="23sp" />
 
     <LinearLayout
         android:id="@+id/layout_grupo"
@@ -159,11 +177,6 @@
             android:ems="10"
             android:inputType="text" />
 
-        <Spinner
-            android:id="@+id/spin_tipoGrupo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

@@ -9,10 +9,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.database.sqlite.*;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
@@ -21,7 +23,7 @@ import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
-    private ImageButton imgBtnCadastrar;
+    private Button imgBtnCadastrar;
 
     private DataBase dataBase;
     private SQLiteDatabase conexao;
@@ -29,6 +31,8 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     private ListView listaContatos;
 
     private EditText txt_pesquisa;
+
+    private FiltrarDados filtrarDados;
 
     private ContatoArrayAdapter adpContatos;
     private RepositorioContato repositorioContato;
@@ -42,7 +46,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_contato);
-        imgBtnCadastrar = (ImageButton) findViewById(R.id.imgBtn_cadastrar);
+        imgBtnCadastrar = (Button) findViewById(R.id.imgBtn_cadastrar);
 
         imgBtnCadastrar.setOnClickListener(this);
 
@@ -79,7 +83,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             listaContatos.setAdapter(adpContatos);
 
             //CLASSE NESTE ARQUIVO, RESPONSÁVEL POR IMPLEMENTAR UM TEXTCHANGEDLISTENER
-            FiltrarDados filtrarDados = new FiltrarDados(adpContatos);
+            filtrarDados = new FiltrarDados(adpContatos);
             //ADICIONANDO O EVENTO À CAIXA DE TEXTO
             txt_pesquisa.addTextChangedListener(filtrarDados);
 
@@ -116,6 +120,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         //Setando o meu arrayAdapter na minha list view
         listaContatos.setAdapter(adpContatos);
+
     }
 
     @Override
@@ -135,13 +140,15 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         startActivityForResult(intent,0);
     }
 
+
+
     //Classe para implementação do listener de texto
     private class FiltrarDados implements TextWatcher{
 
-        ContatoArrayAdapter arrayAdapterContato;
+       // ContatoArrayAdapter arrayAdapterContato;
 
         private FiltrarDados(ContatoArrayAdapter arrayAdapterContato){
-            this.arrayAdapterContato = arrayAdapterContato;
+          //  this.arrayAdapterContato = arrayAdapterContato;
         }
 
         @Override
@@ -153,12 +160,24 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
-            arrayAdapterContato.getFilter().filter(s);
+            adpContatos.getFilter().filter(s);
+
+
+
         }
 
         @Override
         public void afterTextChanged(Editable s) {
 
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (conexao != null){
+            conexao.close();
         }
     }
 

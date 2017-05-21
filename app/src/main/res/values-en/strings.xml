@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Contact</string>
+    <string name="lbl_tituloCadastroContatos">Contact Record</string>
+    <string name="lbl_Telefone">Telephone</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_Email">Email</string>
+    <string name="lbl_Endereco">Address</string>
+    <string name="lbl_dataEspecial">Special Dates</string>
+    <string name="lbl_grupo">Group</string>
+    <string name="lbl_Nome">Name</string>
+
+    <string name="lbl_Salvar">Save</string>
+    <string name="lbl_Editar">Edit</string>
+    <string name="lbl_Excluir">Delete</string>
+
+    <string name="lbl_OK">OK!</string>
+
+    <string name="lbl_tipo_telefone_residencial">Residential</string>
+    <string name="lbl_tipo_telefone_comercial">Commercial</string>
+
+    <string name="lbl_tipo_email_pessoal">Personal</string>
+    <string name="lbl_tipo_email_comercial">Commercial</string>
+
+    <string name="lbl_tipo_endereco_pessoal">Residential</string>
+    <string name="lbl_tipo_endereco_comercial">Commercial</string>
+
+    <string name="lbl_tipo_data_especial_aniversario">Birthday</string>
+    <string name="lbl_tipo_data_especial_evento">Event</string>
+
+    //STRINGS ERROS
+    <string name="lbl_titulo_erro">Error!</string>
+    <string name="lbl_erro_preencher_dados">Errot to fill contact field with a received contact!</string>
+
+    <string name="lbl_tituto_erro_conexao">Connection error!</string>
+    <string name="lbl_erro_conexao">Connection error to database.</string>
+
+    <string name="lbl_erro_adicionar_contato">Error to add new contact the.</string>
+    <string name="lbl_erro_editar_contato">Error to edit contact.</string>
+    <string name="lbl_erro_excluir_contato">Error to delete contact</string>
+
+    //STRINGS SUCESSO
+    <string name="lbl_titulo_sucesso">Success!</string>
+    <string name="lbl_contato_adicionado_sucesso">Contact added with success.</string>
+
+    <string name="lbl_contato_editado_sucesso">Contact edited with success.</string>
+    <string name="lbl_contato_excluido_sucesso">Contact excluded with success.</string>
+
+</resources>

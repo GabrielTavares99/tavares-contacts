@@ -103,7 +103,7 @@ public class RepositorioContato {
         ContatoArrayAdapter adpContatos = new ContatoArrayAdapter(context, R.layout.activity_act_linha_contato);
 
         // Realiza a busca por meio da tabela e campos como parametros
-        Cursor cursor = conn.query(NOME_TABELA, null,null,null,null,null,null);
+        Cursor cursor = conn.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
 
         // Responsavel por armazenar registros
         //Cursor
@@ -121,16 +121,16 @@ public class RepositorioContato {
                 contato.setNome(cursor.getString(1));
 
                 contato.setTelefone(cursor.getString(2));
-                contato.setTipoTelefone(String.valueOf(cursor.getString(3)));
+                contato.setTipoTelefone(cursor.getInt(3));
 
                 contato.setEmail(cursor.getString(4));
-                contato.setTipoEmail(String.valueOf(cursor.getString(5)));
+                contato.setTipoEmail(cursor.getInt(5));
 
                 contato.setEndereco(cursor.getString(6));
-                contato.setTipoEndereco(String.valueOf(cursor.getString(7)));
+                contato.setTipoEndereco(cursor.getInt(7));
 
                 contato.setDataEspecial(new Date(cursor.getLong(8)));
-                contato.setTipoDataEspecial(String.valueOf(cursor.getString(9)));
+                contato.setTipoDataEspecial(cursor.getInt(9));
 
                 contato.setGrupo(cursor.getString(10));
 
@@ -140,6 +140,7 @@ public class RepositorioContato {
             }while (cursor.moveToNext());
 
         }
+
 
         return adpContatos;
     };

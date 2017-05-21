@@ -21,17 +21,16 @@ public class Contato implements Serializable{
     public static String TIPO_DATA_ESPECIAL = "tipoDataEspecial";
     public static String GRUPO = "grupo";
 
-
     private long id;
     private String nome;
     private String telefone;
-    private String tipoTelefone;
+    private Integer tipoTelefone;
     private String email;
-    private String tipoEmail;
+    private Integer tipoEmail;
     private String endereco;
-    private String tipoEndereco;
+    private Integer tipoEndereco;
     private Date dataEspecial;
-    private String tipoDataEspecial;
+    private Integer tipoDataEspecial;
     private String grupo;
 
     public Contato (){
@@ -62,11 +61,11 @@ public class Contato implements Serializable{
         this.telefone = telefone;
     }
 
-    public String getTipoTelefone() {
+    public Integer getTipoTelefone() {
         return tipoTelefone;
     }
 
-    public void setTipoTelefone(String tipoTelefone) {
+    public void setTipoTelefone(Integer tipoTelefone) {
         this.tipoTelefone = tipoTelefone;
     }
 
@@ -78,11 +77,11 @@ public class Contato implements Serializable{
         this.email = email;
     }
 
-    public String getTipoEmail() {
+    public Integer getTipoEmail() {
         return tipoEmail;
     }
 
-    public void setTipoEmail(String tipoEmail) {
+    public void setTipoEmail(Integer tipoEmail) {
         this.tipoEmail = tipoEmail;
     }
 
@@ -94,11 +93,11 @@ public class Contato implements Serializable{
         this.endereco = endereco;
     }
 
-    public String getTipoEndereco() {
+    public Integer getTipoEndereco() {
         return tipoEndereco;
     }
 
-    public void setTipoEndereco(String tipoEndereco) {
+    public void setTipoEndereco(Integer tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
     }
 
@@ -110,11 +109,11 @@ public class Contato implements Serializable{
         this.dataEspecial = dataEspecial;
     }
 
-    public String getTipoDataEspecial() {
+    public Integer getTipoDataEspecial() {
         return tipoDataEspecial;
     }
 
-    public void setTipoDataEspecial(String tipoDataEspecial) {
+    public void setTipoDataEspecial(Integer tipoDataEspecial) {
         this.tipoDataEspecial = tipoDataEspecial;
     }
 
@@ -129,6 +128,8 @@ public class Contato implements Serializable{
 
     @Override
     public String toString() {
-        return this.nome+"\t - "+this.grupo+" \n "+ this.telefone;
+        return this.nome + " " + this.getTelefone();
     }
+
+
 }

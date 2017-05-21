@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ueuo.gabrieltavares.agendadecontatos.Util.Mascaras;
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.app.ViewHelper;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
@@ -59,7 +62,6 @@ public class act_cadastroContato extends AppCompatActivity{
         spin_tipoDataEspecial = (Spinner) findViewById(R.id.spin_tipoDataEspecial);
         spin_tipoEmail = (Spinner) findViewById(R.id.spin_tipoEmail);
         spin_tipoEndereco = (Spinner) findViewById(R.id.spin_tipoEndereco);
-        spin_tipoGrupo = (Spinner) findViewById(R.id.spin_tipoGrupo);
         spin_tipoTelefone = (Spinner) findViewById(R.id.spin_tipoTelefone);
 
         txt_email = (EditText) findViewById(R.id.txt_email);
@@ -69,22 +71,27 @@ public class act_cadastroContato extends AppCompatActivity{
         txt_telefone = (EditText) findViewById(R.id.txt_numeroTelefone);
         txt_dataEspecial = (EditText) findViewById(R.id.txt_dataEspecial);
 
+
+
+        //BLOQUANDO TECLADO VIRTUAL NO CAMPO DATAS ESPECIAIS
+        txt_dataEspecial.setOnKeyListener(null);
+
         //Criando um adaptador de string para colocar no meu "list-box"
         adpEmail = viewHelper.adicionarArrayAdapterSimples(spin_tipoEmail);
-        adpEmail.add("EMAIL 1");
-        adpEmail.add("EMAIL 2");
+        adpEmail.add(getString(R.string.lbl_tipo_email_comercial));
+        adpEmail.add(getString(R.string.lbl_tipo_email_pessoal));
 
         adpTelefone = viewHelper.adicionarArrayAdapterSimples(spin_tipoTelefone);
-        adpTelefone.add("TEL 1");
-        adpTelefone.add("TEL 2");
+        adpTelefone.add(getString(R.string.lbl_tipo_telefone_residencial));
+        adpTelefone.add(getString(R.string.lbl_tipo_telefone_comercial));
 
         adpDataEspecial = viewHelper.adicionarArrayAdapterSimples(spin_tipoDataEspecial);
-        adpDataEspecial.add("DATA 1");
-        adpDataEspecial.add("DATA 2");
+        adpDataEspecial.add(getString(R.string.lbl_tipo_data_especial_aniversario));
+        adpDataEspecial.add(getString(R.string.lbl_tipo_data_especial_evento));
 
         adpEndereco =  viewHelper.adicionarArrayAdapterSimples(spin_tipoEndereco);
-        adpEndereco.add("END 1");
-        adpEndereco.add("END 2");
+        adpEndereco.add(getString(R.string.lbl_tipo_endereco_pessoal));
+        adpEndereco.add(getString(R.string.lbl_tipo_endereco_comercial));
 
         //Instancia objeto listener
         exibeDataListener = new ExibeDataListener();
@@ -107,8 +114,9 @@ public class act_cadastroContato extends AppCompatActivity{
             try {
                 preencherDados(contato);
             }catch (Exception e){
+                //ERRO AO PREENCHER OS CAMPOS
                 //CHAMO UM MÉTODO ALERTDIALOG E PASSO OS PARÂMETROS
-               alertUsuario.showAlert("ERRO","Erro ao preencher os campos com os dados do contato recebido! "+e.getCause());
+               alertUsuario.showAlert(getString(R.string.lbl_titulo_erro),getString(R.string.lbl_erro_preencher_dados)+e.getCause());
             }
 
            // MenuItem itemExcluir = (MenuItem) findViewById(R.id.item_menu_excluir);
@@ -121,7 +129,7 @@ public class act_cadastroContato extends AppCompatActivity{
             conn = dataBase.getWritableDatabase();
             repositorioContato = new RepositorioContato(conn);
         }catch (Exception e){
-            alertUsuario.showAlert("ERRO CONEXÃO!","Erro na Conexão "+ e.getMessage());
+            alertUsuario.showAlert(getString(R.string.lbl_tituto_erro_conexao),getString(R.string.lbl_erro_conexao)+ e.getMessage());
         }
 
     }
@@ -155,16 +163,16 @@ public class act_cadastroContato extends AppCompatActivity{
         contato.setNome(txt_nome.getText().toString());
 
         contato.setTelefone(txt_telefone.getText().toString());
-        contato.setTipoTelefone(String.valueOf(spin_tipoTelefone.getSelectedItemPosition()));
+        contato.setTipoTelefone(spin_tipoTelefone.getSelectedItemPosition());
 
         contato.setEmail(txt_email.getText().toString());
-        contato.setTipoEmail(String.valueOf(spin_tipoEmail.getSelectedItemPosition()));
+        contato.setTipoEmail(spin_tipoEmail.getSelectedItemPosition());
 
         contato.setEndereco(txt_endereco.getText().toString());
-        contato.setTipoEndereco(String.valueOf(spin_tipoEndereco.getSelectedItemPosition()));
+        contato.setTipoEndereco(spin_tipoEndereco.getSelectedItemPosition());
 
         contato.setDataEspecial(date);
-        contato.setTipoDataEspecial(String.valueOf(spin_tipoDataEspecial.getSelectedItemPosition()));
+        contato.setTipoDataEspecial(spin_tipoDataEspecial.getSelectedItemPosition());
 
         contato.setGrupo(txt_grupo.getText().toString());
 
@@ -215,18 +223,18 @@ public class act_cadastroContato extends AppCompatActivity{
                         contato = new Contato();
                         contato = montarContato(contato);
                         repositorioContato.inserir(contato);
-                        alertUsuario.showInfo("Sucesso!", "Contato adicionado com sucesso!");
+                        alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_adicionado_sucesso));
                     } catch (Exception e) {
-                        alertUsuario.showAlert("Erro!", "Erro ao cadastrar o contato! "+e.getMessage());
+                        alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_adicionar_contato)+e.getMessage());
                     }
                     //CASO O OBJETO NÃO SEJA NULO, SIGINIFCA QUE ELE RECEBEU VALORES PARA EDIÇAÕ
                 }else if (contato!=null){
                     try {
                         contato = montarContato(contato);
                         repositorioContato.alterar(contato);
-                        alertUsuario.showInfo("Sucesso!", "Contato Editado com sucesso!");
+                        alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_editado_sucesso));
                     }catch (Exception e){
-                        alertUsuario.showAlert("Erro!", "Erro ao editar contato !"+e.getMessage());
+                        alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_editar_contato)+e.getMessage());
                     }
                 }
                 break;
@@ -234,9 +242,9 @@ public class act_cadastroContato extends AppCompatActivity{
 
                 try {
                     repositorioContato.excluir(contato.getId());
-                    alertUsuario.showInfo("Sucesso!", "Contato excluido com sucesso!");
+                    alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_excluido_sucesso));
                 }catch (Exception e){
-                    alertUsuario.showAlert("Erro!", "Erro ao excluir o contato!");
+                    alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_excluir_contato));
                 }
 
                 //FECHA A ACTIVITY POIS O CONTATO JÁ FOI EXCLUIDO
@@ -280,7 +288,12 @@ public class act_cadastroContato extends AppCompatActivity{
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-
-
+        if (conn != null){
+            conn.close();
+        }
+    }
 }

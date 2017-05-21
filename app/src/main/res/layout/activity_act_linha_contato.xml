@@ -9,23 +9,34 @@
         android:id="@+id/lbl_cor"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        tools:text="cor" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:fontFamily="monospace"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:text="A" />
 
     <LinearLayout
+        android:id="@+id/layout_fundo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/lbl_nome"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            tools:text="Nome" />
+            android:fontFamily="monospace"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/lbl_telefone"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            tools:text="telefone " />
+            android:fontFamily="monospace"
+            android:textSize="24sp" />
     </LinearLayout>
 </LinearLayout>
