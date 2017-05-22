@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     tools:context="com.ueuo.gabrieltavares.agendadecontatos.act_cadastroContato">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/lbl_tituloCadastroContatos"
+        android:textAlignment="center"
         android:textSize="24sp" />
 
     <TextView
@@ -44,7 +46,7 @@
         android:text="@string/lbl_Telefone"
         android:textSize="23sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_telefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,9 +56,8 @@
             android:id="@+id/txt_numeroTelefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
+            android:layout_gravity="left"
             android:ems="10"
-            android:gravity="fill_horizontal"
             android:inputType="phone"
             android:textColorLink="@color/azul_contato" />
 
@@ -64,10 +65,10 @@
             android:id="@+id/spin_tipoTelefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|fill_vertical|fill_horizontal"
-            android:gravity="right" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_email"
@@ -77,7 +78,7 @@
         android:text="@string/lbl_email"
         android:textSize="23sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,9 +95,10 @@
         <Spinner
             android:id="@+id/spin_tipoEmail"
             android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_endereco"
@@ -105,7 +107,7 @@
         android:text="@string/lbl_Endereco"
         android:textSize="23sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_endereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,8 +125,9 @@
             android:id="@+id/spin_tipoEndereco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_weight="1" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_dataEspecial"
@@ -134,7 +137,7 @@
         android:text="@string/lbl_dataEspecial"
         android:textSize="23sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_dataEspecial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,11 +153,12 @@
 
         <Spinner
             android:id="@+id/spin_tipoDataEspecial"
-            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
             android:layout_weight="1" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_Grupo"

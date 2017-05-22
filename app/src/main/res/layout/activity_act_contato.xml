@@ -35,10 +35,9 @@
         android:elevation="6dp"
         android:stateListAnimator="@null"
         android:text="+"
-        android:textAlignment="center"
+        android:textAlignment=" "
         android:textColor="@android:color/white"
         android:textSize="36sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 </RelativeLayout>

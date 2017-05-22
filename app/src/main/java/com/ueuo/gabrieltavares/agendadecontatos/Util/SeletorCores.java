@@ -9,9 +9,8 @@ import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
  */
 
 public class SeletorCores {
-    
-    public int setarCor(String letraInicial){
 
+    public int setarCor(String letraInicial){
 
         int verde = R.drawable.forma_contato_verde;
         int azul = R.drawable.forma_contato_azul;
