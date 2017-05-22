@@ -1,6 +1,7 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -72,7 +73,9 @@ public class ContatoArrayAdapter extends ArrayAdapter<Contato>{
         String letraInicial = String.valueOf( contato.getNome().charAt(0));
         letraInicial = letraInicial.toUpperCase();
 
-        viewHolder.lbl_cor.setBackgroundColor(context.getResources().getColor(seletorCores.setarCor(letraInicial)));
+        //viewHolder.lbl_cor.setBackgroundColor(context.getResources().getColor(seletorCores.setarCor(letraInicial)));
+        viewHolder.lbl_cor.setBackground(context.getResources().getDrawable(seletorCores.setarCor(letraInicial)));
+
         viewHolder.lbl_cor.setText(letraInicial);
 
         viewHolder.lbl_nome.setText(contato.getNome());

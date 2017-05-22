@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name = "azul">#53BBF4</color>
-    <color name = "amarelo">#eff8ff70</color>
-    <color name = "vermelho">#FF432E</color>
-    <color name = "verde">#B1EB00</color>
-    <color name = "rosa">#FF85CB</color>
-    <color name = "laranja">#FFAC00</color>
+    <color name = "azul_contato">#53BBF4</color>
+    <color name = "amarelo_contato">#eff8ff70</color>
+    <color name = "vermelho_contato">#FF432E</color>
+    <color name = "verde_contato">#B1EB00</color>
+    <color name = "rosa_contato">#FF85CB</color>
+    <color name = "laranja_contato">#FFAC00</color>
 
     <color name="branco_linha">#FFFFFF</color>
     <color name="cinza_linha">#F9F9F9</color>

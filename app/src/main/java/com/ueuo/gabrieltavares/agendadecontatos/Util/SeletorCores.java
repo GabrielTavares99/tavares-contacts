@@ -1,5 +1,6 @@
 package com.ueuo.gabrieltavares.agendadecontatos.Util;
 
+import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
@@ -8,68 +9,71 @@ import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
  */
 
 public class SeletorCores {
-
-    public SeletorCores(){
-
-    }
-
+    
     public int setarCor(String letraInicial){
+
+
+        int verde = R.drawable.forma_contato_verde;
+        int azul = R.drawable.forma_contato_azul;
+        int rosa = R.drawable.forma_contato_rosa;
+        int laranja = R.drawable.forma_contato_laranja;
+        int vermelho = R.drawable.forma_contato_vermelho;
 
         switch (letraInicial){
             case "A":
-                return R.color.verde;
+                return verde;
             case "F":
-                return R.color.verde;
+                return verde;
             case "K":
-                return R.color.verde;
+                return verde;
             case "P":
-                return R.color.verde;
+                return verde;
             case "U":
-                return R.color.verde;
+                return verde;
             case "Z":
-                return R.color.verde;
+                return azul;
             case "B":
-                return R.color.azul;
+                return azul;
             case "G":
-                return R.color.azul;
+                return azul;
             case "L":
-                return R.color.azul;
+                return azul;
             case "Q":
-                return R.color.azul;
+                return azul;
             case "V":
-                return R.color.azul;
+                return rosa;
             case "C":
-                return R.color.rosa;
+                return rosa;
             case "H":
-                return R.color.rosa;
+                return rosa;
             case "M":
-                return R.color.rosa;
+                return rosa;
             case "R":
-                return R.color.rosa;
+                return rosa;
             case "W":
-                return R.color.rosa;
+                return vermelho;
             case "D":
-                return R.color.vermelho;
+                return vermelho;
             case "I":
-                return R.color.vermelho;
+                return vermelho;
             case "N":
-                return R.color.vermelho;
+                return vermelho;
             case "S":
-                return R.color.vermelho;
+                return vermelho;
             case "X":
-                return R.color.vermelho;
+                return laranja;
             case "E":
-                return R.color.laranja;
+                return laranja;
             case "J":
-                return R.color.laranja;
+                return laranja;
             case "O":
-                return R.color.laranja;
+                return laranja;
             case "T":
-                return R.color.laranja;
+                return laranja;
             case "Y":
-                return R.color.laranja;
+                return laranja;
             default:
-                return R.color.colorPrimary;
+                return vermelho;
         }
 
     }

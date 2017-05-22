@@ -58,7 +58,7 @@
             android:ems="10"
             android:gravity="fill_horizontal"
             android:inputType="phone"
-            android:textColorLink="@color/azul" />
+            android:textColorLink="@color/azul_contato" />
 
         <Spinner
             android:id="@+id/spin_tipoTelefone"
