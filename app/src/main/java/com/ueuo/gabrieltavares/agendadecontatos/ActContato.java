@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +58,9 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         //Instanciando minha list view
         listaContatos = (ListView) findViewById(R.id.list_contatos);
+
+//        Criando um menu de contexto - menu em cima dos itens da lista
+        registerForContextMenu(listaContatos);
 
         try {
             listaContatos.setOnItemClickListener(this);
@@ -140,8 +145,6 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         startActivityForResult(intent,0);
     }
 
-
-
     //Classe para implementação do listener de texto
     private class FiltrarDados implements TextWatcher{
 
@@ -162,14 +165,28 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
             adpContatos.getFilter().filter(s);
 
-
-
         }
 
         @Override
         public void afterTextChanged(Editable s) {
 
         }
+    }
+
+//    Implemenando os listener de toque prolongado nos itens da lista
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+        MenuItem detalhe = menu.add("Detalhes");
+        detalhe.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                Contato contato = (Contato) listaContatos.getItemAtPosition(info.position);
+                Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
     }
 
     @Override
