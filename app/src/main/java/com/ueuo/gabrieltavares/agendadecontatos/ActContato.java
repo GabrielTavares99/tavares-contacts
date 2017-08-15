@@ -173,6 +173,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         }
     }
 
+
 //    Implemenando os listener de toque prolongado nos itens da lista
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
