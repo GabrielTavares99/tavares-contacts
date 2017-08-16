@@ -181,6 +181,7 @@ public class act_cadastroContato extends AppCompatActivity{
 
     //Aparecer calendario pro usuario selecionar a data
     public void exibeData(){
+
         SelecionaDataListener selecionaDataListener = new SelecionaDataListener();
 
         Calendar calendario = Calendar.getInstance();
@@ -226,6 +227,8 @@ public class act_cadastroContato extends AppCompatActivity{
                         alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_adicionado_sucesso));
                     } catch (Exception e) {
                         alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_adicionar_contato)+e.getMessage());
+                    }finally {
+                        finish();
                     }
                     //CASO O OBJETO NÃO SEJA NULO, SIGINIFCA QUE ELE RECEBEU VALORES PARA EDIÇAÕ
                 }else if (contato!=null){
@@ -235,6 +238,8 @@ public class act_cadastroContato extends AppCompatActivity{
                         alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_editado_sucesso));
                     }catch (Exception e){
                         alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_editar_contato)+e.getMessage());
+                    }finally {
+                        finish();
                     }
                 }
                 break;
