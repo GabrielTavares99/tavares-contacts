@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +58,9 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         //Instanciando minha list view
         listaContatos = (ListView) findViewById(R.id.list_contatos);
+
+//        Criando um menu de contexto - menu em cima dos itens da lista
+        registerForContextMenu(listaContatos);
 
         try {
             listaContatos.setOnItemClickListener(this);
@@ -126,21 +131,22 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //RECUPERANDO MEU OBJETO CONTATO SELECIONADO
-        Contato contato = adpContatos.getItem(position);
+//        //RECUPERANDO MEU OBJETO CONTATO SELECIONADO
+//        Contato contato = adpContatos.getItem(position);
+//
+//        //INSTANCIO MINHA INTENT
+//        Intent intent = new Intent(this,act_cadastroContato.class);
+//
+//        //PASSAGEM DO OBJETO CONTATO ENTRE TELAS
+//        //É PRECISO IMPLEMENTAR SERIALIZABLE NA CLASSE DO OBJETO A INTERFACE PRA TRANSPOSIÇÃO DE OBJETOS
+//        intent.putExtra(parametro_Contato,contato);
+//
+//        //ABRO A SEGUNDA ACTIVITY
+//        startActivityForResult(intent,0);
 
-        //INSTANCIO MINHA INTENT
-        Intent intent = new Intent(this,act_cadastroContato.class);
-
-        //PASSAGEM DO OBJETO CONTATO ENTRE TELAS
-        //É PRECISO IMPLEMENTAR SERIALIZABLE NA CLASSE DO OBJETO A INTERFACE PRA TRANSPOSIÇÃO DE OBJETOS
-        intent.putExtra(parametro_Contato,contato);
-
-        //ABRO A SEGUNDA ACTIVITY
-        startActivityForResult(intent,0);
+        Contato contato = (Contato) listaContatos.getItemAtPosition(position);
+        Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_LONG).show();
     }
-
-
 
     //Classe para implementação do listener de texto
     private class FiltrarDados implements TextWatcher{
@@ -162,14 +168,45 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
             adpContatos.getFilter().filter(s);
 
-
-
         }
 
         @Override
         public void afterTextChanged(Editable s) {
 
         }
+    }
+
+
+//    Implemenando os listener de toque prolongado nos itens da lista
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+        MenuItem detalhe = menu.add("Editar");
+        detalhe.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+
+                //RECUPERANDO MEU OBJETO CONTATO SELECIONADO
+                Contato contato = adpContatos.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
+
+                //INSTANCIO MINHA INTENT
+                Intent intent = new Intent(ActContato.this, act_cadastroContato.class);
+
+                //PASSAGEM DO OBJETO CONTATO ENTRE TELAS
+                //É PRECISO IMPLEMENTAR SERIALIZABLE NA CLASSE DO OBJETO A INTERFACE PRA TRANSPOSIÇÃO DE OBJETOS
+                intent.putExtra(parametro_Contato,contato);
+
+                //ABRO A SEGUNDA ACTIVITY
+                startActivityForResult(intent,0);
+//                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//                Contato contato = (Contato) listaContatos.getItemAtPosition(info.position);
+//                Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
     }
 
     @Override
