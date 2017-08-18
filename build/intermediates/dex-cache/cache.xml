@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d86a085799ac8e7dcc96af70f7f51649b7fbfcea">
+        sha1="e186497b6c4632f2310a0a69453df75448486a46">
         <dex dex="/Users/mac/AndroidStudioProjects/Agenda_De_Contatos/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9af6349baa76b823732090d09b27401ad06225b4/classes.dex" />
     </item>
     <item

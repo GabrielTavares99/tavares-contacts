@@ -17,5 +17,7 @@
         </activity>
         <activity android:name=".act_cadastroContato"></activity>
     </application>
+<!--PAREI EM 7 MINNUTOS DA AULA-->
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
 </manifest>

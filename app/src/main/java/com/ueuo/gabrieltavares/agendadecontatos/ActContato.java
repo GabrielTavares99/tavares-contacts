@@ -1,6 +1,8 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.Browser;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -180,8 +182,40 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 //    Implemenando os listener de toque prolongado nos itens da lista
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-        MenuItem detalhe = menu.add("Editar");
-        detalhe.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+//        if(!contato.site().startWith("http://"))
+//            site = "http://"
+
+        final Contato contato = (Contato) listaContatos.getItemAtPosition(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
+        MenuItem detalheItem = menu.add("Editar");
+
+//      Ligação
+        MenuItem ligarItem = menu.add("Ligar");
+        Intent ligarIntent = new Intent(Intent.ACTION_CALL);
+        ligarIntent.setData(Uri.parse("tel:"+contato.getTelefone()));
+        ligarItem.setIntent(ligarIntent);
+
+//        SMS
+        MenuItem smsItem = menu.add("Enviar SMS");
+        Intent smsIntent= new Intent(Intent.ACTION_VIEW);
+        smsIntent.setData(Uri.parse("sms:"+contato.getTelefone()));
+        smsItem.setIntent(smsIntent);
+
+//        LOCALIZACAO
+        MenuItem localizacaoItem = menu.add("Visualizar posição");
+        Intent localizacaoIntent = new Intent(Intent.ACTION_VIEW);
+        localizacaoIntent.setData(Uri.parse("geo:0,0?q="+contato.getEndereco()));
+        localizacaoItem.setIntent(localizacaoIntent);
+
+//         PERFIL FACEBOOK
+        MenuItem perfilFacebookItem = menu.add("Ir perfil");
+//        Intent siteIntent = new Intent(ActContato.this, Browser.class);
+//        Falo pra intente que quero abrir um recurso
+        Intent siteIntent = new Intent(Intent.ACTION_VIEW);
+        siteIntent.setData(Uri.parse("https://www.facebook.com/search/top/?q="+contato.getNome()+"&init=public"));
+        perfilFacebookItem.setIntent(siteIntent);
+
+        detalheItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -196,7 +230,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
                 //PASSAGEM DO OBJETO CONTATO ENTRE TELAS
                 //É PRECISO IMPLEMENTAR SERIALIZABLE NA CLASSE DO OBJETO A INTERFACE PRA TRANSPOSIÇÃO DE OBJETOS
-                intent.putExtra(parametro_Contato,contato);
+                intent.putExtra(parametro_Contato, contato);
 
                 //ABRO A SEGUNDA ACTIVITY
                 startActivityForResult(intent,0);
