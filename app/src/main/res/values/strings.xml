@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agenda de Contatos</string>
+    <string name="app_name">Tavares Contatos</string>
     <string name="lbl_tituloCadastroContatos">Cadastro de Contato</string>
     <string name="lbl_Telefone">Telefone</string>
     <string name="lbl_email">Email</string>
