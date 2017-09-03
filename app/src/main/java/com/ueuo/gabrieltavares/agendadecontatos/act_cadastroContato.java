@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -48,6 +49,8 @@ public class act_cadastroContato extends AppCompatActivity{
 
     private ArrayAdapter<String> adpTelefone,adpEmail,adpEndereco,adpDataEspecial,adpGrupo;
 
+    private Button btn_camera;
+
     ExibeDataListener exibeDataListener;
 
     ViewHelper viewHelper;
@@ -71,7 +74,7 @@ public class act_cadastroContato extends AppCompatActivity{
         txt_telefone = (EditText) findViewById(R.id.txt_numeroTelefone);
         txt_dataEspecial = (EditText) findViewById(R.id.txt_dataEspecial);
 
-
+        btn_camera = (Button) findViewById(R.id.btn_foto);
 
         //BLOQUANDO TECLADO VIRTUAL NO CAMPO DATAS ESPECIAIS
         txt_dataEspecial.setOnKeyListener(null);
@@ -104,6 +107,13 @@ public class act_cadastroContato extends AppCompatActivity{
 
         //INSTANCIO O OBJETO ALERTDIALOG
         alertUsuario = new MessageBox(this);
+
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertUsuario.showInfo("Sucesso!", "Esta função ainda está sendo implementada, espera até a proxima atualização");
+            }
+        });
 
         //VERIFICO SE VEIO ALGUM OBJETO DE OUTRA ACTIVITY
         if (bundle  != null && bundle.containsKey("CONTATO")){
