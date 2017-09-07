@@ -1,8 +1,15 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,6 +34,8 @@ import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.RepositorioContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
+import java.io.File;
+import java.net.URI;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,9 +61,15 @@ public class act_cadastroContato extends AppCompatActivity{
 
     private Button btn_camera;
 
+    private ImageView img_foto;
+
     ExibeDataListener exibeDataListener;
 
+    private String caminhoFoto;
+
     ViewHelper viewHelper;
+
+    private static final int CODIGO_CAMERA = 567;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +124,7 @@ public class act_cadastroContato extends AppCompatActivity{
         //INSTANCIO O OBJETO ALERTDIALOG
         alertUsuario = new MessageBox(this);
 
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertUsuario.showInfo("Sucesso!", "Esta função ainda está sendo implementada, espera até a proxima atualização");
-            }
-        });
+        img_foto = (ImageView) findViewById(R.id.img_foto);
 
         //VERIFICO SE VEIO ALGUM OBJETO DE OUTRA ACTIVITY
         if (bundle  != null && bundle.containsKey("CONTATO")){
@@ -142,8 +153,34 @@ public class act_cadastroContato extends AppCompatActivity{
             alertUsuario.showAlert(getString(R.string.lbl_tituto_erro_conexao),getString(R.string.lbl_erro_conexao)+ e.getMessage());
         }
 
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                alertUsuario.showInfo("Sucesso!", "Esta função ainda está sendo implementada, espera até a proxima atualização");
+                Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                File file = new File(caminhoFoto);
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(intentCamera, CODIGO_CAMERA);
+            }
+        });
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        O request code pega o código definido no startActivityForResult
+//        O resultCode diz se a ação foi completada ou nao
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CODIGO_CAMERA) {
+                Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+                Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
+                img_foto.setImageBitmap(bitmapreduzido);
+                img_foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+        }
+    }
     ///Método que preenche os campos com os atributos do objeto oriundo de outra classe
     public void preencherDados(Contato contato){
 
