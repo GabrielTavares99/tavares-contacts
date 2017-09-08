@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -152,7 +153,12 @@ public class act_cadastroContato extends AppCompatActivity{
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
                 File file = new File(caminhoFoto);
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+
+                // essa parte muda no Android 7, estamos construindo uma URI
+                // para acessar a foto utilizando o FileProvider
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(act_cadastroContato.this, BuildConfig.APPLICATION_ID+".provider", file));
+
+//                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                 startActivityForResult(intentCamera, CODIGO_CAMERA);
             }
         });
