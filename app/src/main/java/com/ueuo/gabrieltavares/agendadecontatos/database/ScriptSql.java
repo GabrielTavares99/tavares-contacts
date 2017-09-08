@@ -10,7 +10,8 @@ public class ScriptSql {
 
         //Arruma a junçaõ das nossas string sql
         StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append("CREATE TABLE IF NOT EXISTS tb_contato(\n" +
+        sqlBuilder.append(
+                "CREATE TABLE IF NOT EXISTS tb_contato(\n" +
                 "\t_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT\n" +
                 "\t,nome VARCHAR(200)\n"+
                 "\t,telefone VARCHAR(14)\n" +
@@ -22,7 +23,9 @@ public class ScriptSql {
                 "\t,dataEspecial DATE\n" +
                 "\t,tipoDataEspecial INTEGER(2)\n" +
                 "\t,grupo VARCHAR(255)\n" +
-                ");");
+                "\t,caminhoFoto TEXT"+
+                ");"
+        );
 
         return sqlBuilder.toString();
 

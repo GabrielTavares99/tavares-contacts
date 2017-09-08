@@ -13,7 +13,7 @@ public class DataBase extends SQLiteOpenHelper{
     //Utilizar quatro parâmetros
     public DataBase(Context context){
         //Contrutor da classe abstrata pai
-        super(context,"db_tavares_agenda",null,1);
+        super(context,"db_tavares_agenda",null,2);
 
         //Obs. Se mudar o banco, mudar o numero da versar(ultimo parametro)
     }
@@ -27,6 +27,12 @@ public class DataBase extends SQLiteOpenHelper{
     //REALIZAR ALTERAÇÃO NAS TABELAS
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String sql = "";
+        switch (oldVersion) {
+            case 1:
+                sql = "ALTER TABLE tb_contato ADD COLUMN caminhoFoto TEXT";
+                db.execSQL(sql);
+        }
 
     }
 }

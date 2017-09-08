@@ -4,9 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.provider.Browser;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,17 +13,15 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.database.sqlite.*;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
-import com.ueuo.gabrieltavares.agendadecontatos.dominio.RepositorioContato;
+import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
@@ -42,7 +38,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     private FiltrarDados filtrarDados;
 
     private ContatoArrayAdapter adpContatos;
-    private RepositorioContato repositorioContato;
+    private DaoContato daoContato;
 
     private static final String parametro_Contato = "CONTATO";
 
@@ -82,12 +78,12 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //alertUsuario.showInfo("Sucesso!","Banco criado com sucesso");
 
             //Instancia do objeto repositorio que possui os metodos de manupulação do banco
-            repositorioContato = new RepositorioContato(conexao);
+            daoContato = new DaoContato(conexao);
 
             //Dentro do arrayAdapter da lista eu faço a busca na classe
             //que possui os métodos de banco de dados
             //e busco os contatos salvos
-            adpContatos = repositorioContato.buscarContatos(this);
+            adpContatos = daoContato.buscarContatos(this);
 
             //Setando o meu arrayAdapter na minha list view
             listaContatos.setAdapter(adpContatos);
@@ -126,7 +122,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         //Dentro do arrayAdapter da lista eu faço a busca na classe
         //que possui os métodos de banco de dados
         //e busco os contatos salvos
-        adpContatos = repositorioContato.buscarContatos(this);
+        adpContatos = daoContato.buscarContatos(this);
 
         //Setando o meu arrayAdapter na minha list view
         listaContatos.setAdapter(adpContatos);

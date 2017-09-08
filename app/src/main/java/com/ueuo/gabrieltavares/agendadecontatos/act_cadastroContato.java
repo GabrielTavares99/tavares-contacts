@@ -2,19 +2,14 @@ package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,17 +20,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.ueuo.gabrieltavares.agendadecontatos.Util.Mascaras;
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.app.ViewHelper;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
-import com.ueuo.gabrieltavares.agendadecontatos.dominio.RepositorioContato;
+import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
 import java.io.File;
-import java.net.URI;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,7 +41,7 @@ public class act_cadastroContato extends AppCompatActivity{
 
     private DataBase dataBase;
     private SQLiteDatabase conn;
-    private RepositorioContato repositorioContato;
+    private DaoContato daoContato;
     private Contato contato;
 
     public Date date;
@@ -148,7 +140,7 @@ public class act_cadastroContato extends AppCompatActivity{
             //Tentando vericiar se existe conexão
             dataBase = new DataBase(this);
             conn = dataBase.getWritableDatabase();
-            repositorioContato = new RepositorioContato(conn);
+            daoContato = new DaoContato(conn);
         }catch (Exception e){
             alertUsuario.showAlert(getString(R.string.lbl_tituto_erro_conexao),getString(R.string.lbl_erro_conexao)+ e.getMessage());
         }
@@ -178,6 +170,7 @@ public class act_cadastroContato extends AppCompatActivity{
                 Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
                 img_foto.setImageBitmap(bitmapreduzido);
                 img_foto.setScaleType(ImageView.ScaleType.FIT_XY);
+                img_foto.setTag(caminhoFoto);
             }
         }
     }
@@ -202,6 +195,14 @@ public class act_cadastroContato extends AppCompatActivity{
         spin_tipoEmail.setSelection(Integer.valueOf(contato.getTipoEmail()));
         spin_tipoEndereco.setSelection(Integer.valueOf(contato.getTipoEndereco()));
 
+        if(contato.getCaminhoFoto() != null) {
+            caminhoFoto = contato.getCaminhoFoto();
+            Bitmap bitmap = BitmapFactory.decodeFile(contato.getCaminhoFoto());
+            Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
+            img_foto.setImageBitmap(bitmapreduzido);
+            img_foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            img_foto.setTag(caminhoFoto);
+        }
     }
 
     //MÉTODO QUE PEGA OS VALORES DOS CAMPOS E MONTA UM OBJETO CONTATO
@@ -222,6 +223,8 @@ public class act_cadastroContato extends AppCompatActivity{
         contato.setTipoDataEspecial(spin_tipoDataEspecial.getSelectedItemPosition());
 
         contato.setGrupo(txt_grupo.getText().toString());
+
+        contato.setCaminhoFoto((String)img_foto.getTag());
 
         return contato;
     }
@@ -270,30 +273,26 @@ public class act_cadastroContato extends AppCompatActivity{
                     try {
                         contato = new Contato();
                         contato = montarContato(contato);
-                        repositorioContato.inserir(contato);
+                        daoContato.inserir(contato);
                         alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_adicionado_sucesso));
                     } catch (Exception e) {
                         alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_adicionar_contato)+e.getMessage());
-                    }finally {
-                        finish();
                     }
                     //CASO O OBJETO NÃO SEJA NULO, SIGINIFCA QUE ELE RECEBEU VALORES PARA EDIÇAÕ
                 }else if (contato!=null){
                     try {
                         contato = montarContato(contato);
-                        repositorioContato.alterar(contato);
+                        daoContato.alterar(contato);
                         alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_editado_sucesso));
                     }catch (Exception e){
                         alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_editar_contato)+e.getMessage());
-                    }finally {
-                        finish();
                     }
                 }
                 break;
             case R.id.item_menu_excluir:
 
                 try {
-                    repositorioContato.excluir(contato.getId());
+                    daoContato.excluir(contato.getId());
                     alertUsuario.showInfo(getString(R.string.lbl_titulo_sucesso), getString(R.string.lbl_contato_excluido_sucesso));
                 }catch (Exception e){
                     alertUsuario.showAlert(getString(R.string.lbl_titulo_erro), getString(R.string.lbl_erro_excluir_contato));
