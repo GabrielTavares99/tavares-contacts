@@ -68,27 +68,20 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             listaContatos.setOnItemClickListener(this);
         }catch (Exception e){
             alertUsuario.showAlert("Erro!","Erro ao carregar lista de contato: "+e.getMessage());
-          //  alertUsuario.show();
         }
 
         try {
-            dataBase = new DataBase(this);
-            conexao = dataBase.getWritableDatabase();
+
+            preencherLista();
 
             //Mensagem se deu certo a conexão ao banco de dados
             //alertUsuario.showInfo("Sucesso!","Banco criado com sucesso");
 
             //Instancia do objeto repositorio que possui os metodos de manupulação do banco
-            daoContato = new DaoContato(conexao);
 
             //Dentro do arrayAdapter da lista eu faço a busca na classe
             //que possui os métodos de banco de dados
             //e busco os contatos salvos
-            adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
-
-            conexao.close();
-            //Setando o meu arrayAdapter na minha list view
-            listaContatos.setAdapter(adpContatos);
 
             //CLASSE NESTE ARQUIVO, RESPONSÁVEL POR IMPLEMENTAR UM TEXTCHANGEDLISTENER
 //            filtrarDados = new FiltrarDados(adpContatos);
@@ -97,9 +90,19 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         } catch (Exception e){
             //Caso dê erro na excução da conexao ao banco
-            alertUsuario.showAlert("Erro!","Erro ao criar banco!"+e.getMessage());
+            alertUsuario.showAlert("Erro!","Erro ao criar O banco de dados!"+e.getMessage());
         }
 
+    }
+
+    private void preencherLista() {
+        dataBase = new DataBase(this);
+        conexao = dataBase.getWritableDatabase();
+        daoContato = new DaoContato(conexao);
+        adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
+        //Setando o meu arrayAdapter na minha list view
+        listaContatos.setAdapter(adpContatos);
+        conexao.close();
     }
 
     @Override
@@ -121,17 +124,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     //Método que trata os retorno de outras activitys
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Dentro do arrayAdapter da lista eu faço a busca na classe
-        //que possui os métodos de banco de dados
-        //e busco os contatos salvos
-        dataBase = new DataBase(this);
-        conexao = dataBase.getWritableDatabase();
-        DaoContato daoContato = new DaoContato(conexao);
-        adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
-        conexao.close();
-        //Setando o meu arrayAdapter na minha list view
-        listaContatos.setAdapter(adpContatos);
-
+        preencherLista();
     }
 
     @Override
