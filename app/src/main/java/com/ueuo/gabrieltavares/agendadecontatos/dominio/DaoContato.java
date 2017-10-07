@@ -10,7 +10,9 @@ import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by gabri on 20/04/2017.
@@ -96,6 +98,49 @@ public class DaoContato {
 
         conn.insertOrThrow(NOME_TABELA, null, contentValues);
 
+    }
+
+    public List<Contato> getTodosContato(Context context){
+
+        List<Contato> contatos = new ArrayList<Contato>();
+
+        Cursor cursor = conn.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
+
+        if (cursor.getCount() > 0){
+            //Estar na primera posição
+            cursor.moveToFirst();
+            do {
+                //cursor.getColumnIndex("nome")
+
+                Contato contato =  new Contato();
+
+                contato.setId(Long.valueOf(cursor.getString(0)));
+                contato.setNome(cursor.getString(1));
+
+                contato.setTelefone(cursor.getString(2));
+                contato.setTipoTelefone(cursor.getInt(3));
+
+                contato.setEmail(cursor.getString(4));
+                contato.setTipoEmail(cursor.getInt(5));
+
+                contato.setEndereco(cursor.getString(6));
+                contato.setTipoEndereco(cursor.getInt(7));
+
+                contato.setDataEspecial(new Date(cursor.getLong(8)));
+                contato.setTipoDataEspecial(cursor.getInt(9));
+
+                contato.setGrupo(cursor.getString(10));
+
+                contato.setCaminhoFoto(cursor.getString(11));
+
+                contatos.add(contato);
+
+                //Repete até ter dados no cursos
+            }while (cursor.moveToNext());
+
+        }
+
+        return contatos;
     }
 
     public ContatoArrayAdapter buscarContatos(Context context){

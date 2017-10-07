@@ -173,7 +173,7 @@ public class act_cadastroContato extends AppCompatActivity{
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == CODIGO_CAMERA) {
                 Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-                Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
+                Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap,  320, 426, true);
                 img_foto.setImageBitmap(bitmapreduzido);
                 img_foto.setScaleType(ImageView.ScaleType.FIT_XY);
                 img_foto.setTag(caminhoFoto);
@@ -204,7 +204,7 @@ public class act_cadastroContato extends AppCompatActivity{
         if(contato.getCaminhoFoto() != null) {
             caminhoFoto = contato.getCaminhoFoto();
             Bitmap bitmap = BitmapFactory.decodeFile(contato.getCaminhoFoto());
-            Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 400, 400, true);
+            Bitmap bitmapreduzido = Bitmap.createScaledBitmap(bitmap, 320, 426, true);
             img_foto.setImageBitmap(bitmapreduzido);
             img_foto.setScaleType(ImageView.ScaleType.FIT_XY);
             img_foto.setTag(caminhoFoto);
