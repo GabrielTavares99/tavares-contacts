@@ -13,6 +13,7 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.database.sqlite.*;
@@ -37,7 +38,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
     private FiltrarDados filtrarDados;
 
-    private ContatoArrayAdapter adpContatos;
+    private ContatoAdapter adpContatos;
     private DaoContato daoContato;
 
     private static final String parametro_Contato = "CONTATO";
@@ -83,13 +84,14 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //Dentro do arrayAdapter da lista eu faço a busca na classe
             //que possui os métodos de banco de dados
             //e busco os contatos salvos
-            adpContatos = daoContato.buscarContatos(this);
+            adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
 
+            conexao.close();
             //Setando o meu arrayAdapter na minha list view
             listaContatos.setAdapter(adpContatos);
 
             //CLASSE NESTE ARQUIVO, RESPONSÁVEL POR IMPLEMENTAR UM TEXTCHANGEDLISTENER
-            filtrarDados = new FiltrarDados(adpContatos);
+//            filtrarDados = new FiltrarDados(adpContatos);
             //ADICIONANDO O EVENTO À CAIXA DE TEXTO
             txt_pesquisa.addTextChangedListener(filtrarDados);
 
@@ -122,8 +124,11 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         //Dentro do arrayAdapter da lista eu faço a busca na classe
         //que possui os métodos de banco de dados
         //e busco os contatos salvos
-        adpContatos = daoContato.buscarContatos(this);
-
+        dataBase = new DataBase(this);
+        conexao = dataBase.getWritableDatabase();
+        DaoContato daoContato = new DaoContato(conexao);
+        adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
+        conexao.close();
         //Setando o meu arrayAdapter na minha list view
         listaContatos.setAdapter(adpContatos);
 
@@ -167,7 +172,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
-            adpContatos.getFilter().filter(s);
+//            adpContatos.getFilter().filter(s);
 
         }
 
@@ -233,7 +238,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 
                 //RECUPERANDO MEU OBJETO CONTATO SELECIONADO
-                Contato contato = adpContatos.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
+                Contato contato = (Contato) adpContatos.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
 
                 //INSTANCIO MINHA INTENT
                 Intent intent = new Intent(ActContato.this, act_cadastroContato.class);

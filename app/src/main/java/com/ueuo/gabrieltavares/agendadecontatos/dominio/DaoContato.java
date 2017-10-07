@@ -100,7 +100,7 @@ public class DaoContato {
 
     }
 
-    public List<Contato> getTodosContato(Context context){
+    public List<Contato> getTodosContato(){
 
         List<Contato> contatos = new ArrayList<Contato>();
 
@@ -194,5 +194,6 @@ public class DaoContato {
 
         return adpContatos;
     };
+
 
 }

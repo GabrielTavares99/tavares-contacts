@@ -1,6 +1,7 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Context;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -26,23 +27,25 @@ public class ContatoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return contatos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return this.contatos.get(position);
+        return contatos.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return this.contatos.get(position).getId();
+        return contatos.get(position).getId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView = new TextView(this.context);
+        TextView textView = new TextView(context);
         textView.setText(contatos.get(position).getId()+""+contatos.get(position).getNome());
         return textView;
     }
+
+
 }
