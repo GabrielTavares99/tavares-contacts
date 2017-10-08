@@ -84,7 +84,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //e busco os contatos salvos
 
             //CLASSE NESTE ARQUIVO, RESPONSÁVEL POR IMPLEMENTAR UM TEXTCHANGEDLISTENER
-//            filtrarDados = new FiltrarDados(adpContatos);
+            filtrarDados = new FiltrarDados();
             //ADICIONANDO O EVENTO À CAIXA DE TEXTO
             txt_pesquisa.addTextChangedListener(filtrarDados);
 
@@ -152,10 +152,6 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
        // ContatoArrayAdapter arrayAdapterContato;
 
-        private FiltrarDados(ContatoArrayAdapter arrayAdapterContato){
-          //  this.arrayAdapterContato = arrayAdapterContato;
-        }
-
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -166,7 +162,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
 //            adpContatos.getFilter().filter(s);
-
+            String c = "ddd";
         }
 
         @Override

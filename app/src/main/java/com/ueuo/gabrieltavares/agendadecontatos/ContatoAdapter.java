@@ -7,6 +7,7 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by gabri on 07/10/2017.
  */
 
-public class ContatoAdapter extends BaseAdapter {
+public class ContatoAdapter extends BaseAdapter{
 
     private final List<Contato> contatos;
     private final Context context;
@@ -49,16 +50,18 @@ public class ContatoAdapter extends BaseAdapter {
         Contato contato = contatos.get(position);
 
 //        A CONVERTVIEW é uma view já instanciada que está sendo reaproveitada
-       View view = convertView;
+       View view = null;
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        if (view == null){
+        if (convertView == null){
 //            Parâmetros
 //                    O layout a ser inflado
 //                    O item pai
 //                    False para dizer que a view inflada não deve ser colocada dentro do item pai
             view = layoutInflater.inflate(R.layout.activity_act_linha_contato_foto, parent ,false);
+        }else {
+            view = convertView;
         }
         TextView nome = (TextView) view.findViewById(R.id.lbl_nome);
         nome.setText(contato.getNome());
@@ -68,13 +71,15 @@ public class ContatoAdapter extends BaseAdapter {
 
         ImageView foto = (ImageView) view.findViewById(R.id.layout_foto_img_foto) ;
 
-        String caminhoFoto = contato.getCaminhoFoto();
-        if (caminhoFoto != null){
-            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 64, 64, true);
-            foto.setImageBitmap(bitmapReduzido);
-            foto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
+//        foto.setImageResource(R.drawable.person);
+//        String caminhoFoto;
+//        caminhoFoto = contato.getCaminhoFoto();
+//        if (caminhoFoto != null){
+//            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+//            Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 64, 64, true);
+//            foto.setImageBitmap(bitmapReduzido);
+//            foto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        }
 
         return view;
     }

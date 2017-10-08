@@ -6,15 +6,15 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <EditText
-            android:id="@+id/txt_pesquisa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:hint="@string/lbl_Nome"
-            android:inputType="textPersonName"
-            android:textColorLink="@color/colorPrimary"
-            android:textSize="24sp" />
+    <EditText
+        android:id="@+id/txt_pesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="@string/lbl_Nome"
+        android:inputType="textPersonName"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/list_contatos"
