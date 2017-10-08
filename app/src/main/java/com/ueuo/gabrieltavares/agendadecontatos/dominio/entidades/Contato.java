@@ -1,8 +1,10 @@
 package com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -130,4 +132,5 @@ public class Contato implements Serializable{
     public void setCaminhoFoto(String caminhoFoto) {
         this.caminhoFoto = caminhoFoto;
     }
+
 }

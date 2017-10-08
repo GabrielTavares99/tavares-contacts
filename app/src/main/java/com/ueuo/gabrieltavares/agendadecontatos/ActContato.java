@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,10 +21,15 @@ import android.database.sqlite.*;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ueuo.gabrieltavares.agendadecontatos.Converter.ContatoConverter;
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
@@ -84,7 +90,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //e busco os contatos salvos
 
             //CLASSE NESTE ARQUIVO, RESPONSÁVEL POR IMPLEMENTAR UM TEXTCHANGEDLISTENER
-//            filtrarDados = new FiltrarDados(adpContatos);
+            filtrarDados = new FiltrarDados();
             //ADICIONANDO O EVENTO À CAIXA DE TEXTO
             txt_pesquisa.addTextChangedListener(filtrarDados);
 
@@ -96,13 +102,38 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     }
 
     private void preencherLista() {
-        dataBase = new DataBase(this);
-        conexao = dataBase.getWritableDatabase();
-        daoContato = new DaoContato(conexao);
-        adpContatos = new ContatoAdapter(this, daoContato.getTodosContato());
+        daoContato = new DaoContato(this);
+        List<Contato> contatos=  daoContato.getTodosContato();
+        adpContatos = new ContatoAdapter(this, contatos);
         //Setando o meu arrayAdapter na minha list view
         listaContatos.setAdapter(adpContatos);
-        conexao.close();
+        daoContato.close();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        Inflando o menu com o botão de sincronização
+        getMenuInflater().inflate(R.menu.menu_act_contato, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_menu_sincronizar:
+                DaoContato daoContato = new DaoContato(this);
+                List<Contato> contatos = daoContato.getTodosContato();
+                daoContato.close();
+
+                ContatoConverter conversor = new ContatoConverter();
+                String json = conversor.converterToJson(contatos);
+
+                Toast.makeText(this, "Sincronizando..."+json, Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -152,10 +183,6 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
        // ContatoArrayAdapter arrayAdapterContato;
 
-        private FiltrarDados(ContatoArrayAdapter arrayAdapterContato){
-          //  this.arrayAdapterContato = arrayAdapterContato;
-        }
-
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -166,7 +193,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
             //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
 //            adpContatos.getFilter().filter(s);
-
+            String c = "ddd";
         }
 
         @Override
@@ -256,7 +283,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         super.onDestroy();
 
         if (conexao != null){
-            conexao.close();
+            daoContato.close();
         }
     }
 

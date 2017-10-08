@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/lbl_cor"
+        android:id="@+id/layout_foto_img_foto"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="center_vertical|center_horizontal"
@@ -14,13 +14,13 @@
         android:layout_marginLeft="5dp"
         android:fontFamily="monospace"
         android:gravity="center_vertical|center_horizontal"
+        android:src="@drawable/person"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/background_light"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:src="@drawable/person"
-        tools:text="A"/>
+        tools:text="A" />
 
     <LinearLayout
         android:id="@+id/layout_fundo"
@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         android:paddingLeft="0dp">
 
         <TextView
