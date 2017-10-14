@@ -138,10 +138,7 @@ public class act_cadastroContato extends AppCompatActivity{
         }
 
         try {
-            //Tentando vericiar se existe conexão
-            dataBase = new DataBase(this);
-            conn = dataBase.getWritableDatabase();
-            daoContato = new DaoContato(conn);
+            daoContato = new DaoContato(this);
         }catch (Exception e){
             alertUsuario.showAlert(getString(R.string.lbl_tituto_erro_conexao),getString(R.string.lbl_erro_conexao)+ e.getMessage());
         }

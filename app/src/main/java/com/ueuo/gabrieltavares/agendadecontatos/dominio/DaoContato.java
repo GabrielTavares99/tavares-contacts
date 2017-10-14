@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 
 import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
+import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
 import java.util.ArrayList;
@@ -20,12 +21,15 @@ import java.util.List;
 
 public class DaoContato {
 
-    private SQLiteDatabase conn;
+    private SQLiteDatabase conexao;
 
     ContentValues contentValues;
 
-    public DaoContato(SQLiteDatabase conn){
-        this.conn = conn;
+    DataBase dataBase;
+
+    public DaoContato(Context context){
+        this.dataBase = new DataBase(context);
+        this.conexao = dataBase.getWritableDatabase();
     }
 
     //CONSTANTE AO NOME DA TABELA
@@ -74,7 +78,7 @@ public class DaoContato {
 
         String idWhere [] = new String[]{String.valueOf(idContato)};
 
-        conn.delete(NOME_TABELA,CAMPO_ID,idWhere);
+        conexao.delete(NOME_TABELA,CAMPO_ID,idWhere);
 
         return true;
     }
@@ -87,7 +91,7 @@ public class DaoContato {
         // "_ID = ? AND nome = ?" - VETOR COM OS PARAMETROS DO WHERE
         String argumentosWhere[] = new String[]{String.valueOf(contato.getId())};
 
-        conn.update(NOME_TABELA, contentValues,CAMPO_ID, argumentosWhere);
+        conexao.update(NOME_TABELA, contentValues,CAMPO_ID, argumentosWhere);
 
         return true;
     }
@@ -96,7 +100,7 @@ public class DaoContato {
 
         contentValues = preencherValues(contato);
 
-        conn.insertOrThrow(NOME_TABELA, null, contentValues);
+        conexao.insertOrThrow(NOME_TABELA, null, contentValues);
 
     }
 
@@ -104,7 +108,9 @@ public class DaoContato {
 
         List<Contato> contatos = new ArrayList<Contato>();
 
-        Cursor cursor = conn.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
+//        sqLiteDatabase.query("table1", tableColumns, whereClause, whereArgs,
+//                null, null, orderBy);
+        Cursor cursor = conexao.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+" COLLATE NOCASE ASC");
 
         if (cursor.getCount() > 0){
             //Estar na primera posição
@@ -140,7 +146,12 @@ public class DaoContato {
 
         }
 
+        conexao.close();
         return contatos;
+    }
+
+    public void close(){
+        this.conexao.close();
     }
 
     public ContatoArrayAdapter buscarContatos(Context context){
@@ -151,7 +162,7 @@ public class DaoContato {
         ContatoArrayAdapter adpContatos = new ContatoArrayAdapter(context, R.layout.activity_act_linha_contato);
 
         // Realiza a busca por meio da tabela e campos como parametros
-        Cursor cursor = conn.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
+        Cursor cursor = conexao.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
 
         // Responsavel por armazenar registros
         //Cursor
