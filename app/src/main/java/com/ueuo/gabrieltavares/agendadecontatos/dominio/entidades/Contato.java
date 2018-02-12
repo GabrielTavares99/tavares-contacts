@@ -1,15 +1,8 @@
 package com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades;
 
-import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.Date;
 
-/**
- * Created by gabri on 21/04/2017.
- */
 //implementei serializable pra poder transmitir esse objeto como parametro pra outra activity
 public class Contato implements Serializable{
 

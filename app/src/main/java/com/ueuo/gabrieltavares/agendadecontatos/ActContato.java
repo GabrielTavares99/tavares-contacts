@@ -3,10 +3,11 @@ package com.ueuo.gabrieltavares.agendadecontatos;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
@@ -14,10 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.database.sqlite.*;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,8 +26,6 @@ import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{

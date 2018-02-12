@@ -1,13 +1,6 @@
 package com.ueuo.gabrieltavares.agendadecontatos.Util;
 
-import android.text.BoringLayout;
-
-/**
- * Created by gabri on 04/05/2017.
- */
-
 public class Mascaras {
-
 
     public String mascaraTelefone(String telefone){
 

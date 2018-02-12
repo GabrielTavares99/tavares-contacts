@@ -1,13 +1,9 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,10 +11,6 @@ import android.widget.TextView;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
 import java.util.List;
-
-/**
- * Created by gabri on 07/10/2017.
- */
 
 public class ContatoAdapter extends BaseAdapter{
 

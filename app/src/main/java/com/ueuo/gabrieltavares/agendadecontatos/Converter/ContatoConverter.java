@@ -7,10 +7,6 @@ import org.json.JSONStringer;
 
 import java.util.List;
 
-/**
- * Created by gabri on 14/10/2017.
- */
-
 public class ContatoConverter {
     public String converterToJson(List<Contato> contatos) {
 

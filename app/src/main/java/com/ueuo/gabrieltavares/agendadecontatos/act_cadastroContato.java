@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.ueuo.gabrieltavares.agendadecontatos.Util.DateUtils;
 import com.ueuo.gabrieltavares.agendadecontatos.app.MessageBox;
 import com.ueuo.gabrieltavares.agendadecontatos.app.ViewHelper;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
@@ -32,8 +32,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import com.ueuo.gabrieltavares.agendadecontatos.Util.DateUtils;
 
 public class act_cadastroContato extends AppCompatActivity{
 

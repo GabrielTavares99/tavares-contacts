@@ -1,12 +1,7 @@
 package com.ueuo.gabrieltavares.agendadecontatos.Util;
 
-import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
-import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
-/**
- * Created by gabri on 04/05/2017.
- */
 
 public class SeletorCores {
 

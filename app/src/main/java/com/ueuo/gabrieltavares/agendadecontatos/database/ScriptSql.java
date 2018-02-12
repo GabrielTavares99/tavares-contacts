@@ -1,9 +1,5 @@
 package com.ueuo.gabrieltavares.agendadecontatos.database;
 
-/**
- * Created by gabri on 17/04/2017.
- */
-
 public class ScriptSql {
 
     public static String getCreateContato(){

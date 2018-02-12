@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.ArrayAdapter;
 
 import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
@@ -14,10 +13,6 @@ import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-/**
- * Created by gabri on 20/04/2017.
- */
 
 public class DaoContato {
 

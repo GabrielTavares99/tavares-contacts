@@ -1,9 +1,5 @@
 package com.ueuo.gabrieltavares.agendadecontatos.database;
 
-/**
- * Created by gabri on 17/04/2017.
- */
-
 import android.content.Context;
 import android.database.sqlite.*;
 

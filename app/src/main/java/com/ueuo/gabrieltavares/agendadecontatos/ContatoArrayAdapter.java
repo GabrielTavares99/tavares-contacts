@@ -1,8 +1,6 @@
 package com.ueuo.gabrieltavares.agendadecontatos;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,10 +12,6 @@ import android.widget.TextView;
 
 import com.ueuo.gabrieltavares.agendadecontatos.Util.SeletorCores;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
-
-/**
- * Created by gabri on 28/04/2017.
- */
 
 public class ContatoArrayAdapter extends ArrayAdapter<Contato>{
 

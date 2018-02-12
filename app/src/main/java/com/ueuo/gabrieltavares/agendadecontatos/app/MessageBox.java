@@ -3,10 +3,6 @@ package com.ueuo.gabrieltavares.agendadecontatos.app;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-/**
- * Created by gabri on 27/04/2017.
- */
-
 public class MessageBox {
 
     AlertDialog.Builder alertDialog;
