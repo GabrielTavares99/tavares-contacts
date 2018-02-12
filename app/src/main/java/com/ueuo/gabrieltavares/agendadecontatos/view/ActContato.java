@@ -21,50 +21,43 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ueuo.gabrieltavares.agendadecontatos.R;
-import com.ueuo.gabrieltavares.agendadecontatos.web.WebTaskContato;
 import com.ueuo.gabrieltavares.agendadecontatos.adapter.ContatoAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 import com.ueuo.gabrieltavares.agendadecontatos.util.MessageBoxUtil;
+import com.ueuo.gabrieltavares.agendadecontatos.web.WebTaskContato;
 
 import java.util.List;
 
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
+    private static final String parametro_Contato = "CONTATO";
+    MessageBoxUtil alertUsuario;
     private Button imgBtnCadastrar;
-
     private DataBase dataBase;
     private SQLiteDatabase conexao;
-
     private ListView listaContatos;
-
     private EditText txt_pesquisa;
-
     private FiltrarDados filtrarDados;
-
     private ContatoAdapter adpContatos;
     private DaoContato daoContato;
-
-    private static final String parametro_Contato = "CONTATO";
-
-    MessageBoxUtil alertUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_contato);
-        imgBtnCadastrar = (Button) findViewById(R.id.imgBtn_cadastrar);
+        imgBtnCadastrar = findViewById(R.id.imgBtn_cadastrar);
 
         imgBtnCadastrar.setOnClickListener(this);
 
         alertUsuario = new MessageBoxUtil(this);
 
-        txt_pesquisa = (EditText) findViewById(R.id.txt_pesquisa);
+        txt_pesquisa = findViewById(R.id.txt_pesquisa);
 
         //Instanciando minha list view
-        listaContatos = (ListView) findViewById(R.id.list_contatos);
+        listaContatos = findViewById(R.id.list_contatos);
 
 //        Criando um menu de contexto - menu em cima dos itens da lista
         registerForContextMenu(listaContatos);
@@ -72,7 +65,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         try {
             listaContatos.setOnItemClickListener(this);
         } catch (Exception e) {
-            alertUsuario.showAlert("Erro!", "Erro ao carregar lista de contato: " + e.getMessage());
+            alertUsuario.showAlert(getString(R.string.lbl_erro), getString(R.string.lbl_erro_carregar_lista_contato) + e.getMessage());
         }
 
         try {
@@ -95,7 +88,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         } catch (Exception e) {
             //Caso dê erro na excução da conexao ao banco
-            alertUsuario.showAlert("Erro!", "Erro ao criar O banco de dados! " + e.getMessage());
+            alertUsuario.showAlert(this.getString(R.string.lbl_erro), "Erro ao criar O banco de dados! " + e.getMessage());
         }
 
     }
@@ -180,31 +173,6 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_LONG).show();
     }
 
-    //Classe para implementação do listener de texto
-    private class FiltrarDados implements TextWatcher {
-
-        // ContatoArrayAdapter arrayAdapterContato;
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
-            //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
-//            adpContatos.getFilter().filter(s);
-            String c = "ddd";
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    }
-
-
     //    Implemenando os listener de toque prolongado nos itens da lista
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
@@ -286,6 +254,29 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         if (conexao != null) {
             daoContato.close();
+        }
+    }
+
+    //Classe para implementação do listener de texto
+    private class FiltrarDados implements TextWatcher {
+
+        // ContatoArrayAdapter arrayAdapterContato;
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //O PRÓPRIO ARRAYADAPTER TEM UMA FUNÇÃO DE FILTRAGEM
+            //O PARÁMETRO DE FILTO SÃO OS CAMPOS DO MÉTODO .TOSTRING()
+//            adpContatos.getFilter().filter(s);
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
         }
     }
 

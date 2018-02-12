@@ -45,5 +45,7 @@
     <string name="lbl_contato_editado_sucesso">Contato Editado com sucesso.</string>
     <string name="lbl_contato_excluido_sucesso">Contato excluido com sucesso.</string>
     <string name="sincronizar_contatos">Sincronizar Contatos</string>
+    <string name="lbl_erro">Erro!</string>
+    <string name="lbl_erro_carregar_lista_contato">Erro ao carregar lista de contato:</string>
 
 </resources>

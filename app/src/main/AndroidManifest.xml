@@ -6,17 +6,19 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_iconeinicial"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_iconeinicial"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ActContato"
+
+        <activity
+            android:name=".view.ActContato"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ActCadastroContato"></activity>
+        <activity android:name=".view.ActCadastroContato" />
 
 
         <!--CÓDIGO PARA ANDROID >= 7-->
@@ -29,10 +31,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        
+
+        <receiver android:name=".receiver.SMSReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 </manifest>
