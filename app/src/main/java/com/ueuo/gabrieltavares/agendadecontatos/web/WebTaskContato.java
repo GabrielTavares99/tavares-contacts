@@ -1,4 +1,4 @@
-package com.ueuo.gabrieltavares.agendadecontatos;
+package com.ueuo.gabrieltavares.agendadecontatos.web;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,12 +12,12 @@ import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 import java.util.List;
 
 //PRIMEIRO PARAMETRO É O PARAMETRO DO DO IM BACKGROUND
-public class WebTask extends AsyncTask {
+public class WebTaskContato extends AsyncTask {
 
     private Context context;
     ProgressDialog dialog;
 
-    public WebTask(Context context) {
+    public WebTaskContato(Context context) {
         this.context = context;
     }
 
@@ -37,7 +37,7 @@ public class WebTask extends AsyncTask {
         ContatoConverter conversor = new ContatoConverter();
         String json = conversor.converterToJson(contatos);
 
-        WebClient webClient = new WebClient();
+        WebClientContato webClient = new WebClientContato();
         String respostaRequisicao = webClient.post(json);
         return respostaRequisicao;
     }

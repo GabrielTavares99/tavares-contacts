@@ -1,4 +1,4 @@
-package com.ueuo.gabrieltavares.agendadecontatos;
+package com.ueuo.gabrieltavares.agendadecontatos.web;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class WebClient {
+public class WebClientContato {
     public String post(String json) {
         try {
             URL url = new URL("https://www.caelum.com.br/mobile");

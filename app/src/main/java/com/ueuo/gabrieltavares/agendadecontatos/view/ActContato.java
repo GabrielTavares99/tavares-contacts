@@ -21,10 +21,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ueuo.gabrieltavares.agendadecontatos.R;
-import com.ueuo.gabrieltavares.agendadecontatos.WebClient;
-import com.ueuo.gabrieltavares.agendadecontatos.WebTask;
+import com.ueuo.gabrieltavares.agendadecontatos.web.WebTaskContato;
 import com.ueuo.gabrieltavares.agendadecontatos.adapter.ContatoAdapter;
-import com.ueuo.gabrieltavares.agendadecontatos.converter.ContatoConverter;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.DaoContato;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
@@ -122,7 +120,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         switch (item.getItemId()) {
             case R.id.item_menu_sincronizar:
 //                Toast.makeText(this, "Sincronizando...", Toast.LENGTH_SHORT).show();
-                new WebTask(this).execute();
+                new WebTaskContato(this).execute();
 //                DaoContato daoContato = new DaoContato(this);
 //                List<Contato> contatos = daoContato.getTodosContato();
 //                daoContato.close();
@@ -130,7 +128,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 //                ContatoConverter conversor = new ContatoConverter();
 //                String json = conversor.converterToJson(contatos);
 //
-//                WebClient webClient = new WebClient();
+//                WebClientContato webClient = new WebClientContato();
 //                String respostaRequisicao = webClient.post(json);
 //                Toast.makeText(this, respostaRequisicao, Toast.LENGTH_SHORT).show();
                 break;
