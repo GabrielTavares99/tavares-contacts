@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ueuo.gabrieltavares.agendadecontatos.ContatoArrayAdapter;
+import com.ueuo.gabrieltavares.agendadecontatos.adapter.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;

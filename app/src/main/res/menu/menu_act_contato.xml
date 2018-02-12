@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ActContato"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ActContato">
 
-    <item android:id="@+id/item_menu_sincronizar"
+    <item
+        android:id="@+id/item_menu_sincronizar"
         android:icon="@drawable/ic_enviar"
-        app:showAsAction="always"
-        android:title="Sincronizar Contatos"></item>
+        android:title="@string/sincronizar_contatos"
+        app:showAsAction="always">
+    </item>
 
 </menu>

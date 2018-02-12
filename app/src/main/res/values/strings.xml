@@ -44,5 +44,6 @@
 
     <string name="lbl_contato_editado_sucesso">Contato Editado com sucesso.</string>
     <string name="lbl_contato_excluido_sucesso">Contato excluido com sucesso.</string>
+    <string name="sincronizar_contatos">Sincronizar Contatos</string>
 
 </resources>
