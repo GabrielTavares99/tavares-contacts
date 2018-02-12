@@ -33,6 +33,7 @@ import java.util.List;
 public class ActContato extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static final String parametro_Contato = "CONTATO";
+    private static final int CODIGO_SMS = 550;
     MessageBoxUtil alertUsuario;
     private Button imgBtnCadastrar;
     private DataBase dataBase;
@@ -89,6 +90,10 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
         } catch (Exception e) {
             //Caso dê erro na excução da conexao ao banco
             alertUsuario.showAlert(this.getString(R.string.lbl_erro), "Erro ao criar O banco de dados! " + e.getMessage());
+        }
+
+        if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, CODIGO_SMS);
         }
 
     }

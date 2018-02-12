@@ -5,7 +5,6 @@ import android.database.sqlite.*;
 
 public class DataBase extends SQLiteOpenHelper{
 
-
     //Utilizar quatro parâmetros
     public DataBase(Context context){
         //Contrutor da classe abstrata pai
@@ -29,6 +28,6 @@ public class DataBase extends SQLiteOpenHelper{
                 sql = "ALTER TABLE tb_contato ADD COLUMN caminhoFoto TEXT";
                 db.execSQL(sql);
         }
-
     }
+
 }

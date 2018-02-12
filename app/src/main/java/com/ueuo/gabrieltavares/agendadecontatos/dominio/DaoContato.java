@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ueuo.gabrieltavares.agendadecontatos.adapter.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.R;
+import com.ueuo.gabrieltavares.agendadecontatos.adapter.ContatoArrayAdapter;
 import com.ueuo.gabrieltavares.agendadecontatos.database.DataBase;
 import com.ueuo.gabrieltavares.agendadecontatos.dominio.entidades.Contato;
 
@@ -15,17 +15,6 @@ import java.util.Date;
 import java.util.List;
 
 public class DaoContato {
-
-    private SQLiteDatabase conexao;
-
-    ContentValues contentValues;
-
-    DataBase dataBase;
-
-    public DaoContato(Context context){
-        this.dataBase = new DataBase(context);
-        this.conexao = dataBase.getWritableDatabase();
-    }
 
     //CONSTANTE AO NOME DA TABELA
     private static final String NOME_TABELA = "tb_contato";
@@ -38,12 +27,20 @@ public class DaoContato {
     private static final String CAMPO_ENDERECO = "endereco";
     private static final String CAMPO_TIPO_ENDERECO = "tipoEndereco";
     private static final String CAMPO_DATA_ESPECIAL = "dataEspecial";
-    private static final String CAMPO_TIPO_DATA_ESPECIAL= "tipoDataEspecial";
+    private static final String CAMPO_TIPO_DATA_ESPECIAL = "tipoDataEspecial";
     private static final String CAMPO_GRUPO = "grupo";
     private static final String CAMPO_CAMINHO_FOTO = "caminhoFoto";
+    ContentValues contentValues;
+    DataBase dataBase;
+    private SQLiteDatabase conexao;
+
+    public DaoContato(Context context) {
+        this.dataBase = new DataBase(context);
+        this.conexao = dataBase.getWritableDatabase();
+    }
 
     //MÉTODO QUE PREENCHE O VALUES
-    public ContentValues preencherValues(Contato contato){
+    public ContentValues preencherValues(Contato contato) {
 
         contentValues = new ContentValues();
 
@@ -69,16 +66,16 @@ public class DaoContato {
         return contentValues;
     }
 
-    public boolean excluir(long idContato){
+    public boolean excluir(long idContato) {
 
-        String idWhere [] = new String[]{String.valueOf(idContato)};
+        String idWhere[] = new String[]{String.valueOf(idContato)};
 
-        conexao.delete(NOME_TABELA,CAMPO_ID,idWhere);
+        conexao.delete(NOME_TABELA, CAMPO_ID, idWhere);
 
         return true;
     }
 
-    public boolean alterar(Contato contato){
+    public boolean alterar(Contato contato) {
 
         contentValues = preencherValues(contato);
 
@@ -86,12 +83,21 @@ public class DaoContato {
         // "_ID = ? AND nome = ?" - VETOR COM OS PARAMETROS DO WHERE
         String argumentosWhere[] = new String[]{String.valueOf(contato.getId())};
 
-        conexao.update(NOME_TABELA, contentValues,CAMPO_ID, argumentosWhere);
+        conexao.update(NOME_TABELA, contentValues, CAMPO_ID, argumentosWhere);
 
         return true;
     }
 
-    public void inserir(Contato contato){
+    public boolean isContatoSalvo(String telefone) {
+        SQLiteDatabase db = dataBase.getReadableDatabase();
+        String query = "SELECT * FROM tb_contato WHERE telefone = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{telefone});
+        int qtd = cursor.getCount();
+        cursor.close();
+        return qtd > 0;
+    }
+
+    public void inserir(Contato contato) {
 
         contentValues = preencherValues(contato);
 
@@ -99,21 +105,21 @@ public class DaoContato {
 
     }
 
-    public List<Contato> getTodosContato(){
+    public List<Contato> getTodosContato() {
 
         List<Contato> contatos = new ArrayList<Contato>();
 
 //        sqLiteDatabase.query("table1", tableColumns, whereClause, whereArgs,
 //                null, null, orderBy);
-        Cursor cursor = conexao.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+" COLLATE NOCASE ASC");
+        Cursor cursor = conexao.query(NOME_TABELA, null, null, null, null, null, CAMPO_NOME + " COLLATE NOCASE ASC");
 
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             //Estar na primera posição
             cursor.moveToFirst();
             do {
                 //cursor.getColumnIndex("nome")
 
-                Contato contato =  new Contato();
+                Contato contato = new Contato();
 
                 contato.setId(Long.valueOf(cursor.getString(0)));
                 contato.setNome(cursor.getString(1));
@@ -137,7 +143,7 @@ public class DaoContato {
                 contatos.add(contato);
 
                 //Repete até ter dados no cursos
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
 
         }
 
@@ -145,11 +151,11 @@ public class DaoContato {
         return contatos;
     }
 
-    public void close(){
+    public void close() {
         this.conexao.close();
     }
 
-    public ContatoArrayAdapter buscarContatos(Context context){
+    public ContatoArrayAdapter buscarContatos(Context context) {
         //Só me permite exibir textos simples
         //ArrayAdapter<Contato> adpContatos = new ArrayAdapter<Contato>(context, android.R.layout.simple_list_item_1);
 
@@ -157,19 +163,19 @@ public class DaoContato {
         ContatoArrayAdapter adpContatos = new ContatoArrayAdapter(context, R.layout.activity_act_linha_contato);
 
         // Realiza a busca por meio da tabela e campos como parametros
-        Cursor cursor = conexao.query(NOME_TABELA, null,null,null,null,null,CAMPO_NOME+ " ASC");
+        Cursor cursor = conexao.query(NOME_TABELA, null, null, null, null, null, CAMPO_NOME + " ASC");
 
         // Responsavel por armazenar registros
         //Cursor
 
         //Vericiar se retornou dado
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             //Estar na primera posição
-           cursor.moveToFirst();
+            cursor.moveToFirst();
             do {
                 //cursor.getColumnIndex("nome")
 
-                Contato contato =  new Contato();
+                Contato contato = new Contato();
 
                 contato.setId(Long.valueOf(cursor.getString(0)));
                 contato.setNome(cursor.getString(1));
@@ -193,13 +199,13 @@ public class DaoContato {
                 adpContatos.add(contato);
 
                 //Repete até ter dados no cursos
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
 
         }
 
 
         return adpContatos;
-    };
+    }
 
 
 }
