@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,7 +35,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
     private static final String parametro_Contato = "CONTATO";
     private static final int CODIGO_SMS = 550;
     MessageBoxUtil alertUsuario;
-    private Button imgBtnCadastrar;
+    private FloatingActionButton imgBtnCadastrar;
     private DataBase dataBase;
     private SQLiteDatabase conexao;
     private ListView listaContatos;
@@ -49,8 +49,8 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_contato);
-        imgBtnCadastrar = findViewById(R.id.imgBtn_cadastrar);
 
+        imgBtnCadastrar = findViewById(R.id.imgBtn_cadastrar);
         imgBtnCadastrar.setOnClickListener(this);
 
         alertUsuario = new MessageBoxUtil(this);
@@ -92,7 +92,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
             alertUsuario.showAlert(this.getString(R.string.lbl_erro), "Erro ao criar O banco de dados! " + e.getMessage());
         }
 
-        if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
+        if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, CODIGO_SMS);
         }
 
@@ -175,7 +175,7 @@ public class ActContato extends AppCompatActivity implements View.OnClickListene
 //        startActivityForResult(intent,0);
 
         Contato contato = (Contato) listaContatos.getItemAtPosition(position);
-        Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_LONG).show();
+        Toast.makeText(ActContato.this, "Contato: " + contato.getNome(), Toast.LENGTH_SHORT).show();
     }
 
     //    Implemenando os listener de toque prolongado nos itens da lista
