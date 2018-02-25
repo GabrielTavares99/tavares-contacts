@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -17,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@sample/contatos.json/contatos/imagem" />
 
     <TextView
         android:id="@+id/lbl_nome"
@@ -26,13 +28,13 @@
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:fontFamily="monospace"
-        android:text="@string/app_name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/layout_foto_img_foto"
-        app:layout_constraintTop_toTopOf="@id/layout_foto_img_foto" />
+        app:layout_constraintTop_toTopOf="@id/layout_foto_img_foto"
+        tools:text="@sample/contatos.json/contatos/nome" />
 
     <TextView
         android:id="@+id/lbl_telefone"
@@ -41,13 +43,13 @@
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:fontFamily="monospace"
-        android:text="2555-0010"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/layout_foto_img_foto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/layout_foto_img_foto"
-        app:layout_constraintTop_toBottomOf="@id/lbl_nome" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_nome"
+        tools:text="@sample/contatos.json/contatos/numero" />
 
     <TextView
         android:id="@+id/act_linha_contato_foto_lbl_grupo"
@@ -55,13 +57,13 @@
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:fontFamily="monospace"
-        android:text="Grupo"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/lbl_nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/lbl_nome"
-        app:layout_constraintTop_toTopOf="@id/lbl_nome" />
+        app:layout_constraintTop_toTopOf="@id/lbl_nome"
+        tools:text="@sample/contatos.json/contatos/grupo" />
 
 </android.support.constraint.ConstraintLayout>

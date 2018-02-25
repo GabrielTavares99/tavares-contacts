@@ -44,5 +44,8 @@
 
     <string name="lbl_contato_editado_sucesso">Contact edited with success.</string>
     <string name="lbl_contato_excluido_sucesso">Contact excluded with success.</string>
+    <string name="lbl_erro">Error!</string>
+    <string name="lbl_erro_carregar_lista_contato">Error to load the contact list:</string>
+    <string name="sincronizar_contatos">Sync Contacts</string>
 
 </resources>

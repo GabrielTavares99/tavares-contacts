@@ -1,212 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_principal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="4dp"
-    tools:context="com.ueuo.gabrieltavares.agendadecontatos.view.ActCadastroContato">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout_principal"
         android:layout_width="match_parent"
-        android:layout_height="225dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="4dp"
+        tools:context="com.ueuo.gabrieltavares.agendadecontatos.view.ActCadastroContato">
 
-        <ImageView
-            android:id="@+id/img_foto"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/person"
-            android:background="#00a8ec"/>
+            android:layout_height="225dp">
 
-        <Button
-            android:id="@+id/btn_foto"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/forma_botao_fundo_camera"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"/>
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/img_foto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#00a8ec"
+                android:scaleType="centerCrop"
+                android:src="@drawable/person" />
 
-    <TextView
-        android:id="@+id/lbl_titulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_tituloCadastroContatos"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+            <Button
+                android:id="@+id/btn_foto"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/forma_botao_fundo_camera" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/lbl_nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_Nome"
-        android:textSize="24sp" />
-
-    <LinearLayout
-        android:id="@+id/layout_nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_Nome"
+        <TextView
+            android:id="@+id/lbl_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:text="@string/lbl_tituloCadastroContatos"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lbl_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_Nome"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_Nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lbl_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_Telefone"
+            android:textSize="23sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_numeroTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:ems="10"
+                android:inputType="phone"
+                android:textColorLink="@color/azul_contato" />
+
+            <Spinner
+                android:id="@+id/spin_tipoTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lbl_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.00"
+            android:text="@string/lbl_email"
+            android:textSize="23sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <Spinner
+                android:id="@+id/spin_tipoEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lbl_endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_Endereco"
+            android:textSize="23sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_endereco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_endereco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text" />
+
+            <Spinner
+                android:id="@+id/spin_tipoEndereco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lbl_dataEspecial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.00"
+            android:text="@string/lbl_dataEspecial"
+            android:textSize="23sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_dataEspecial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_dataEspecial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="date" />
+
+            <Spinner
+                android:id="@+id/spin_tipoDataEspecial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_weight="1" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lbl_Grupo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_grupo"
+            android:textSize="23sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_grupo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_grupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text" />
+
+        </LinearLayout>
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/lbl_telefone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_Telefone"
-        android:textSize="23sp" />
-
-    <RelativeLayout
-        android:id="@+id/layout_telefone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_numeroTelefone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:ems="10"
-            android:inputType="phone"
-            android:textColorLink="@color/azul_contato" />
-
-        <Spinner
-            android:id="@+id/spin_tipoTelefone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/lbl_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.00"
-        android:text="@string/lbl_email"
-        android:textSize="23sp" />
-
-    <RelativeLayout
-        android:id="@+id/layout_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <Spinner
-            android:id="@+id/spin_tipoEmail"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/lbl_endereco"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_Endereco"
-        android:textSize="23sp" />
-
-    <RelativeLayout
-        android:id="@+id/layout_endereco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_endereco"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-
-        <Spinner
-            android:id="@+id/spin_tipoEndereco"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/lbl_dataEspecial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.00"
-        android:text="@string/lbl_dataEspecial"
-        android:textSize="23sp" />
-
-    <RelativeLayout
-        android:id="@+id/layout_dataEspecial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_dataEspecial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="date" />
-
-        <Spinner
-            android:id="@+id/spin_tipoDataEspecial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/lbl_Grupo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_grupo"
-        android:textSize="23sp" />
-
-    <LinearLayout
-        android:id="@+id/layout_grupo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txt_grupo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-
-    </LinearLayout>
-
-</LinearLayout>
 </ScrollView>

@@ -1,0 +1,34 @@
+{
+  "contatos": [
+    {
+      "nome": "Maria",
+      "numero": "9.9999-9999",
+      "grupo": "Escola",
+      "imagem": "@drawable/person"
+    },
+    {
+      "nome": "João",
+      "numero": "9.8888-8888",
+      "grupo": "Trabalho",
+      "imagem": "@drawable/person"
+    },
+    {
+      "nome": "Luiz Fernando",
+      "numero": "9.7777-7777",
+      "grupo": "Igreja",
+      "imagem": "@drawable/person"
+    },
+    {
+      "nome": "Sophia",
+      "numero": "9.5555-5555",
+      "grupo": "Trabalho",
+      "imagem": "@drawable/person"
+    },
+    {
+      "nome": "Manuel",
+      "numero": "9.4444-4444",
+      "grupo": "Faculdade",
+      "imagem": "@drawable/person"
+    }
+  ]
+}

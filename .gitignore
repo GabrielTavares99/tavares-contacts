@@ -3,3 +3,6 @@ build/
 .gradle
 tavares-contacts.iml
 capture/
+app/app.iml
+app/release/
+app/build/
