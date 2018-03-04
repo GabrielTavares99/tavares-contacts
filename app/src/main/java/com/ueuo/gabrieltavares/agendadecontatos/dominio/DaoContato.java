@@ -90,11 +90,20 @@ public class DaoContato {
 
     public boolean isContatoSalvo(String telefone) {
         SQLiteDatabase db = dataBase.getReadableDatabase();
-        String query = "SELECT * FROM tb_contato WHERE telefone = ?";
+        String query = "SELECT * FROM " + NOME_TABELA + " WHERE telefone = ?";
         Cursor cursor = db.rawQuery(query, new String[]{telefone});
         int qtd = cursor.getCount();
         cursor.close();
         return qtd > 0;
+    }
+
+    public boolean existeEsseContato(Contato contato) {
+        SQLiteDatabase db = dataBase.getReadableDatabase();
+        String query = "SELECT * FROM " + NOME_TABELA + " WHERE telefone = ? OR nome = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{contato.getTelefone(), contato.getNome()});
+        int qtd = cursor.getCount();
+        cursor.close();
+        return qtd == 1;
     }
 
     public void inserir(Contato contato) {
@@ -104,6 +113,7 @@ public class DaoContato {
         conexao.insertOrThrow(NOME_TABELA, null, contentValues);
 
     }
+
 
     public List<Contato> getTodosContato() {
 
